@@ -2,7 +2,7 @@ name := "scalatestplus-jmock"
 
 organization := "org.scalatestplus"
 
-version := "1.0.0-SNAP1"
+version := "1.0.0-SNAP2"
 
 homepage := Some(url("https://github.com/scalatest/scalatestplus-jmock"))
 
@@ -23,11 +23,11 @@ developers := List(
   )
 )
 
-crossScalaVersions := List("2.10.7", "2.11.12", "2.12.8", "2.13.0-M5")
+crossScalaVersions := List("2.10.7", "2.11.12", "2.12.8", "2.13.0-RC1")
 
 libraryDependencies ++= Seq(
   "org.jmock" % "jmock-legacy" % "2.8.3",
-  "org.scalatest" %% "scalatest" % "3.1.0-SNAP8"
+  "org.scalatest" %% "scalatest" % "3.1.0-SNAP9"
 )
 
 enablePlugins(SbtOsgi)
