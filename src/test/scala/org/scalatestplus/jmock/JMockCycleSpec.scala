@@ -16,15 +16,15 @@
 package org.scalatestplus.jmock
 
 import org.scalatest._
-import org.scalatest.fixture
+import org.scalatest.funspec._
 import org.jmock.AbstractExpectations.{equal => thatEquals}
 
 class JMockCycleSpec extends FlatSpec with Matchers {
 
   "The JMockCycle trait" should "work with multiple mocks" in {
 
-    val a = new fixture.Spec with JMockCycleFixture {
-      def `test that should fail`(cycle: JMockCycle): Unit = {
+    val a = new FixtureAnyFunSpec with JMockCycleFixture {
+      it("test that should fail") { cycle: JMockCycle => 
         import cycle._
         trait OneFish {
           def eat(food: String): Unit = ()
@@ -47,7 +47,7 @@ class JMockCycleSpec extends FlatSpec with Matchers {
         }
       }
 
-      def `test that should succeed`(cycle: JMockCycle): Unit = {
+      it("test that should succeed") { cycle: JMockCycle =>
         import cycle._
         trait OneFish {
           def eat(food: String): Unit = ()
@@ -70,7 +70,7 @@ class JMockCycleSpec extends FlatSpec with Matchers {
         }
       }
 
-      def `test that should succeed with class`(cycle: JMockCycle): Unit = {
+      it("test that should succeed with class") { cycle: JMockCycle =>
         import cycle._
         class OneFish {
           def eat(food: String): Unit = ()
@@ -102,8 +102,8 @@ class JMockCycleSpec extends FlatSpec with Matchers {
   }
 
   it should "provide sugar for invoking with methods that take matchers" in {
-    val a = new fixture.Spec with JMockCycleFixture {
-      def `test that should succeed`(cycle: JMockCycle): Unit = {
+    val a = new FixtureAnyFunSpec with JMockCycleFixture {
+      it("test that should succeed") { cycle: JMockCycle =>
         import cycle._
         trait OneFish {
           def doString(food: String): Unit = ()
@@ -151,8 +151,8 @@ class JMockCycleSpec extends FlatSpec with Matchers {
   }
 
   it should "provide sugar for invoking with methods that take non-matcher values" in {
-    val a = new fixture.Spec with JMockCycleFixture {
-      def `test that should succeed`(cycle: JMockCycle): Unit = {
+    val a = new FixtureAnyFunSpec with JMockCycleFixture {
+      it("test that should succeed") { cycle: JMockCycle =>
         import cycle._
         trait OneFish {
           def doString(food: String): Unit = ()
