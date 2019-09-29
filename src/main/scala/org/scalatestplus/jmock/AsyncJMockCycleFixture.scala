@@ -30,7 +30,7 @@ import org.scalatest.fixture
   *
   * @author Bill Venners
   */
-trait AsyncJMockCycleFixture { this: fixture.AsyncTestSuite =>
+trait AsyncJMockCycleFixture { this: FixtureAsyncTestSuite =>
 
   /**
     * Defines the <code>Fixture</code> type to be <code>JMockCycle</code>.
