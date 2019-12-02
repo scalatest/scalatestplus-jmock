@@ -17,14 +17,13 @@ package org.scalatestplus.jmock
 
 import org.scalatest._
 import org.jmock.AbstractExpectations.{equal => thatEquals}
-import org.scalatest.fixture
 
 
-class AsyncJMockCycleSpec extends FlatSpec with Matchers {
+class AsyncJMockCycleSpec extends flatspec.AnyFlatSpec with matchers.should.Matchers {
 
   "The AsyncJMockCycle trait" should "work with multiple mocks" in {
 
-    val a = new fixture.AsyncFunSuite with AsyncJMockCycleFixture {
+    val a = new funsuite.FixtureAsyncFunSuite with AsyncJMockCycleFixture {
       test("test that should fail") { cycle =>
         import cycle._
         trait OneFish {
@@ -109,7 +108,7 @@ class AsyncJMockCycleSpec extends FlatSpec with Matchers {
   }
 
   it should "provide sugar for invoking with methods that take matchers" in {
-    val a = new fixture.AsyncFunSuite with AsyncJMockCycleFixture {
+    val a = new funsuite.FixtureAsyncFunSuite with AsyncJMockCycleFixture {
       test("test that should succeed") { cycle =>
         import cycle._
         trait OneFish {
@@ -160,7 +159,7 @@ class AsyncJMockCycleSpec extends FlatSpec with Matchers {
   }
 
   it should "provide sugar for invoking with methods that take non-matcher values" in {
-    val a = new fixture.AsyncFunSuite with AsyncJMockCycleFixture {
+    val a = new funsuite.FixtureAsyncFunSuite with AsyncJMockCycleFixture {
       test("test that should succeed") { cycle =>
         import cycle._
         trait OneFish {
