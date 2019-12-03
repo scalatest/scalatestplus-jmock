@@ -16,7 +16,6 @@
 package org.scalatestplus.jmock
 
 import org.scalatest._
-import org.scalatest.fixture
 
 /**
  * Trait that will pass a new <code>JMockCycle</code> into any test that needs one.
@@ -30,7 +29,7 @@ import org.scalatest.fixture
  *
  * @author Bill Venners
  */
-trait JMockCycleFixture { this: fixture.TestSuite =>
+trait JMockCycleFixture { this: FixtureTestSuite =>
 
   /**
    * Defines the <code>Fixture</code> type to be <code>JMockCycle</code>.
