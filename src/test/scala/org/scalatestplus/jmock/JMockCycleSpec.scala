@@ -19,7 +19,7 @@ import org.scalatest._
 import org.scalatest.funspec._
 import org.jmock.AbstractExpectations.{equal => thatEquals}
 
-class JMockCycleSpec extends FlatSpec with Matchers {
+class JMockCycleSpec extends flatspec.AnyFlatSpec with matchers.should.Matchers {
 
   "The JMockCycle trait" should "work with multiple mocks" in {
 
