@@ -18,7 +18,6 @@ package org.scalatestplus.jmock
 import org.scalatest._
 import org.jmock.AbstractExpectations.{equal => thatEquals}
 
-
 class AsyncJMockCycleSpec extends flatspec.AnyFlatSpec with matchers.should.Matchers {
 
   "The AsyncJMockCycle trait" should "work with multiple mocks" in {
