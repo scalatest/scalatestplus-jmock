@@ -20,6 +20,7 @@ Maven:
   <version>3.2.0.0</version>
   <scope>test</scope>
 </dependency>
+```
 
 **Publishing**
 
