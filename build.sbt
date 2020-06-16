@@ -23,7 +23,7 @@ developers := List(
   )
 )
 
-crossScalaVersions := List("2.10.7", "2.11.12", "2.12.11", "2.13.2")
+crossScalaVersions := List("2.10.7", "2.11.12", "2.12.11", "2.13.2", "0.24.0")
 
 libraryDependencies ++= Seq(
   "org.jmock" % "jmock-legacy" % "2.8.3",
@@ -33,6 +33,8 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest-funspec" % "3.2.0" % "test", 
   "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.0" % "test"
 )
+
+Test / scalacOptions ++= (if (isDotty.value) Seq("-language:implicitConversions") else Nil)
 
 enablePlugins(SbtOsgi)
 

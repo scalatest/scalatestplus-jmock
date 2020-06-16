@@ -20,17 +20,18 @@ import org.jmock.AbstractExpectations.{equal => thatEquals}
 
 class AsyncJMockCycleSpec extends flatspec.AnyFlatSpec with matchers.should.Matchers {
 
+  trait OneFish {
+    def eat(food: String): Unit = ()
+  }
+  trait TwoFish {
+    def eat(food: String): Unit = ()
+  }
+
   "The AsyncJMockCycle trait" should "work with multiple mocks" in {
 
     val a = new funsuite.FixtureAsyncFunSuite with AsyncJMockCycleFixture {
       test("test that should fail") { cycle =>
         import cycle._
-        trait OneFish {
-          def eat(food: String): Unit = ()
-        }
-        trait TwoFish {
-          def eat(food: String): Unit = ()
-        }
         val oneFishMock = mock[OneFish]
         val twoFishMock = mock[TwoFish]
 
@@ -50,12 +51,6 @@ class AsyncJMockCycleSpec extends flatspec.AnyFlatSpec with matchers.should.Matc
 
       test("test that should succeed") { cycle =>
         import cycle._
-        trait OneFish {
-          def eat(food: String): Unit = ()
-        }
-        trait TwoFish {
-          def eat(food: String): Unit = ()
-        }
         val oneFishMock = mock[OneFish]
         val twoFishMock = mock[TwoFish]
 
@@ -75,12 +70,6 @@ class AsyncJMockCycleSpec extends flatspec.AnyFlatSpec with matchers.should.Matc
 
       test("test that should succeed with class") { cycle =>
         import cycle._
-        class OneFish {
-          def eat(food: String): Unit = ()
-        }
-        class TwoFish {
-          def eat(food: String): Unit = ()
-        }
         val oneFishMock = mock[OneFish]
         val twoFishMock = mock[TwoFish]
 
@@ -106,46 +95,47 @@ class AsyncJMockCycleSpec extends flatspec.AnyFlatSpec with matchers.should.Matc
     ts.size should === (2)
   }
 
+  trait ThreeFish {
+    def doString(food: String): Unit = ()
+    def doInt(food: Int): Unit = ()
+    def doShort(food: Short): Unit = ()
+    def doByte(food: Byte): Unit = ()
+    def doLong(food: Long): Unit = ()
+    def doBoolean(food: Boolean): Unit = ()
+    def doFloat(food: Float): Unit = ()
+    def doDouble(food: Double): Unit = ()
+    def doChar(food: Char): Unit = ()
+  }
+
   it should "provide sugar for invoking with methods that take matchers" in {
     val a = new funsuite.FixtureAsyncFunSuite with AsyncJMockCycleFixture {
       test("test that should succeed") { cycle =>
         import cycle._
-        trait OneFish {
-          def doString(food: String): Unit = ()
-          def doInt(food: Int): Unit = ()
-          def doShort(food: Short): Unit = ()
-          def doByte(food: Byte): Unit = ()
-          def doLong(food: Long): Unit = ()
-          def doBoolean(food: Boolean): Unit = ()
-          def doFloat(food: Float): Unit = ()
-          def doDouble(food: Double): Unit = ()
-          def doChar(food: Char): Unit = ()
-        }
-        val oneFishMock = mock[OneFish]
+        val threeFishMock = mock[ThreeFish]
 
         expecting { e => import e.{oneOf => OneOf, withArg}
 
-          OneOf (oneFishMock).doString(withArg(thatEquals("red fish")))
-          OneOf (oneFishMock).doInt(withArg(thatEquals(5)))
-          OneOf (oneFishMock).doShort(withArg(thatEquals(5.asInstanceOf[Short])))
-          OneOf (oneFishMock).doByte(withArg(thatEquals(5.asInstanceOf[Byte])))
-          OneOf (oneFishMock).doLong(withArg(thatEquals(5L)))
-          OneOf (oneFishMock).doBoolean(withArg(thatEquals(true)))
-          OneOf (oneFishMock).doFloat(withArg(thatEquals(5.0f)))
-          OneOf (oneFishMock).doDouble(withArg(thatEquals(5.0d)))
-          OneOf (oneFishMock).doChar(withArg(thatEquals('5')))
+          OneOf (threeFishMock).doString(withArg(thatEquals("red fish")))
+          OneOf (threeFishMock).doInt(withArg(thatEquals(5)))
+          OneOf (threeFishMock).doShort(withArg(thatEquals(5.asInstanceOf[Short])))
+          OneOf (threeFishMock).doByte(withArg(thatEquals(5.asInstanceOf[Byte])))
+          OneOf (threeFishMock).doLong(withArg(thatEquals(5L)))
+          OneOf (threeFishMock).doBoolean(withArg(thatEquals(true)))
+          OneOf (threeFishMock).doFloat(withArg(thatEquals(5.0f)))
+          OneOf (threeFishMock).doDouble(withArg(thatEquals(5.0d)))
+          OneOf (threeFishMock).doChar(withArg(thatEquals('5')))
         }
 
         whenExecuting {
-          oneFishMock.doString("red fish")
-          oneFishMock.doInt(5)
-          oneFishMock.doShort(5)
-          oneFishMock.doByte(5)
-          oneFishMock.doLong(5L)
-          oneFishMock.doBoolean(true)
-          oneFishMock.doFloat(5.0f)
-          oneFishMock.doDouble(5.0d)
-          oneFishMock.doChar('5')
+          threeFishMock.doString("red fish")
+          threeFishMock.doInt(5)
+          threeFishMock.doShort(5)
+          threeFishMock.doByte(5)
+          threeFishMock.doLong(5L)
+          threeFishMock.doBoolean(true)
+          threeFishMock.doFloat(5.0f)
+          threeFishMock.doDouble(5.0d)
+          threeFishMock.doChar('5')
         }
 
         succeed
@@ -157,45 +147,46 @@ class AsyncJMockCycleSpec extends flatspec.AnyFlatSpec with matchers.should.Matc
     ts.size should === (1)
   }
 
+  trait FourFish {
+    def doString(food: String): Unit = ()
+    def doInt(food: Int): Unit = ()
+    def doShort(food: Short): Unit = ()
+    def doByte(food: Byte): Unit = ()
+    def doLong(food: Long): Unit = ()
+    def doBoolean(food: Boolean): Unit = ()
+    def doFloat(food: Float): Unit = ()
+    def doDouble(food: Double): Unit = ()
+    def doChar(food: Char): Unit = ()
+  }
+
   it should "provide sugar for invoking with methods that take non-matcher values" in {
     val a = new funsuite.FixtureAsyncFunSuite with AsyncJMockCycleFixture {
       test("test that should succeed") { cycle =>
         import cycle._
-        trait OneFish {
-          def doString(food: String): Unit = ()
-          def doInt(food: Int): Unit = ()
-          def doShort(food: Short): Unit = ()
-          def doByte(food: Byte): Unit = ()
-          def doLong(food: Long): Unit = ()
-          def doBoolean(food: Boolean): Unit = ()
-          def doFloat(food: Float): Unit = ()
-          def doDouble(food: Double): Unit = ()
-          def doChar(food: Char): Unit = ()
-        }
-        val oneFishMock = mock[OneFish]
+        val fourFishMock = mock[FourFish]
 
         expecting { e => import e.{oneOf => OneOf, withArg}
-          OneOf (oneFishMock).doString(withArg("red fish"))
-          OneOf (oneFishMock).doInt(withArg(5))
-          OneOf (oneFishMock).doShort(withArg(5.asInstanceOf[Short]))
-          OneOf (oneFishMock).doByte(withArg(5.asInstanceOf[Byte]))
-          OneOf (oneFishMock).doLong(withArg(5L))
-          OneOf (oneFishMock).doBoolean(withArg(true))
-          OneOf (oneFishMock).doFloat(withArg(5.0f))
-          OneOf (oneFishMock).doDouble(withArg(5.0d))
-          OneOf (oneFishMock).doChar(withArg('5'))
+          OneOf (fourFishMock).doString(withArg("red fish"))
+          OneOf (fourFishMock).doInt(withArg(5))
+          OneOf (fourFishMock).doShort(withArg(5.asInstanceOf[Short]))
+          OneOf (fourFishMock).doByte(withArg(5.asInstanceOf[Byte]))
+          OneOf (fourFishMock).doLong(withArg(5L))
+          OneOf (fourFishMock).doBoolean(withArg(true))
+          OneOf (fourFishMock).doFloat(withArg(5.0f))
+          OneOf (fourFishMock).doDouble(withArg(5.0d))
+          OneOf (fourFishMock).doChar(withArg('5'))
         }
 
         whenExecuting {
-          oneFishMock.doString("red fish")
-          oneFishMock.doInt(5)
-          oneFishMock.doShort(5)
-          oneFishMock.doByte(5)
-          oneFishMock.doLong(5L)
-          oneFishMock.doBoolean(true)
-          oneFishMock.doFloat(5.0f)
-          oneFishMock.doDouble(5.0d)
-          oneFishMock.doChar('5')
+          fourFishMock.doString("red fish")
+          fourFishMock.doInt(5)
+          fourFishMock.doShort(5)
+          fourFishMock.doByte(5)
+          fourFishMock.doLong(5L)
+          fourFishMock.doBoolean(true)
+          fourFishMock.doFloat(5.0f)
+          fourFishMock.doDouble(5.0d)
+          fourFishMock.doChar('5')
         }
 
         succeed
