@@ -25,7 +25,7 @@ developers := List(
 
 scalaVersion := "2.13.3"
 
-crossScalaVersions := List("2.10.7", "2.11.12", "2.12.12", "2.13.3", "3.0.0-M1")
+crossScalaVersions := List("2.10.7", "2.11.12", "2.12.12", "2.13.4", "3.0.0-M2")
 
 libraryDependencies ++= Seq(
   "org.jmock" % "jmock-legacy" % "2.8.3",
