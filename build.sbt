@@ -23,7 +23,9 @@ developers := List(
   )
 )
 
-crossScalaVersions := List("2.10.7", "2.11.12", "2.12.11", "2.13.2")
+scalaVersion := "2.13.4"
+
+crossScalaVersions := List("2.10.7", "2.11.12", "2.12.12", "2.13.4", "3.0.0-M2")
 
 libraryDependencies ++= Seq(
   "org.jmock" % "jmock-legacy" % "2.8.3",
@@ -49,6 +51,8 @@ pomPostProcess := { (node: XmlNode) =>
     }
   }).transform(node).head
 }
+
+Test / scalacOptions ++= (if (isDotty.value) Seq("-language:implicitConversions") else Nil)
 
 enablePlugins(SbtOsgi)
 
@@ -83,8 +87,19 @@ publishArtifact in Test := false
 
 pomIncludeRepository := { _ => false }
 
+pomExtra := (
+  <scm>
+    <url>https://github.com/scalatest/scalatestplus-jmock</url>
+    <connection>scm:git:git@github.com:scalatest/scalatestplus-jmock.git</connection>
+    <developerConnection>
+      scm:git:git@github.com:scalatest/scalatestplus-jmock.git
+    </developerConnection>
+  </scm>
+)
+
 credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 
-pgpSecretRing := file((Path.userHome / ".gnupg" / "secring.gpg").getAbsolutePath)
+// Temporary disable publishing of doc in dotty, can't get it to build.
+publishArtifact in (Compile, packageDoc) := !scalaBinaryVersion.value.startsWith("3.")
 
-pgpPassphrase := None
+scalacOptions in (Compile, doc) := Seq("-doc-title", s"ScalaTest + JMock ${version.value}")

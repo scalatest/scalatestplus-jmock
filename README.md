@@ -3,7 +3,7 @@ ScalaTest + JMock provides integration support between ScalaTest and JMock.
 
 **Usage**
 
-To use it for ScalaTest 3.3.0.0-SNAP3 and JMock 2.8.x: 
+To use it for ScalaTest 3.3.0-SNAP3 and JMock 2.8.x: 
 
 SBT: 
 
