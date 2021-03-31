@@ -2,7 +2,7 @@ name := "jmock-2.8"
 
 organization := "org.scalatestplus"
 
-version := "3.2.6.0"
+version := "3.2.7.0"
 
 homepage := Some(url("https://github.com/scalatest/scalatestplus-jmock"))
 
@@ -23,17 +23,17 @@ developers := List(
   )
 )
 
-scalaVersion := "2.13.4"
+scalaVersion := "2.13.5"
 
-crossScalaVersions := List("2.10.7", "2.11.12", "2.12.13", "2.13.4", "3.0.0-RC1")
+crossScalaVersions := List("2.10.7", "2.11.12", "2.12.13", "2.13.5", "3.0.0-RC2")
 
 libraryDependencies ++= Seq(
   "org.jmock" % "jmock-legacy" % "2.8.3",
-  "org.scalatest" %% "scalatest-core" % "3.2.6", 
-  "org.scalatest" %% "scalatest-flatspec" % "3.2.6" % "test", 
-  "org.scalatest" %% "scalatest-funsuite" % "3.2.6" % "test", 
-  "org.scalatest" %% "scalatest-funspec" % "3.2.6" % "test", 
-  "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.6" % "test"
+  "org.scalatest" %% "scalatest-core" % "3.2.7", 
+  "org.scalatest" %% "scalatest-flatspec" % "3.2.7" % "test", 
+  "org.scalatest" %% "scalatest-funsuite" % "3.2.7" % "test", 
+  "org.scalatest" %% "scalatest-funspec" % "3.2.7" % "test", 
+  "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.7" % "test"
 )
 
 Test / scalacOptions ++= (if (isDotty.value) Seq("-language:implicitConversions") else Nil)
