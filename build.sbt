@@ -86,4 +86,6 @@ credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 // Temporary disable publishing of doc in dotty, can't get it to build.
 publishArtifact in (Compile, packageDoc) := !scalaBinaryVersion.value.startsWith("3.")
 
-scalacOptions in (Compile, doc) := Seq("-doc-title", s"ScalaTest + JMock ${version.value}")
+scalacOptions in (Compile, doc) := Seq("-doc-title", s"ScalaTest + JMock ${version.value}", 
+                                       "-sourcepath", baseDirectory.value.getAbsolutePath(), 
+                                       "-doc-source-url", s"https://github.com/scalatest/releases-source/blob/main/scalatestplus-jmock/${version.value}€{FILE_PATH}.scala")
