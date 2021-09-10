@@ -39,8 +39,6 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.9" % "test"
 )
 
-Test / scalacOptions ++= (if (isDotty.value) Seq("-language:implicitConversions") else Nil)
-
 enablePlugins(SbtOsgi)
 
 osgiSettings
