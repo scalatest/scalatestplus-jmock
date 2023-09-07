@@ -5,7 +5,7 @@ name := "jmock-2.12"
 
 organization := "org.scalatestplus"
 
-version := "3.2.16.0"
+version := "3.2.17.0"
 
 homepage := Some(url("https://github.com/scalatest/scalatestplus-jmock"))
 
@@ -26,17 +26,17 @@ developers := List(
   )
 )
 
-scalaVersion := "2.13.10"
+scalaVersion := "2.13.11"
 
-crossScalaVersions := List("2.10.7", "2.11.12", "2.12.17", "2.13.10", "3.1.3")
+crossScalaVersions := List("2.10.7", "2.11.12", "2.12.17", "2.13.11", "3.1.3")
 
 libraryDependencies ++= Seq(
   "org.jmock" % "jmock-legacy" % "2.12.0",
-  "org.scalatest" %% "scalatest-core" % "3.2.16", 
-  "org.scalatest" %% "scalatest-flatspec" % "3.2.16" % "test", 
-  "org.scalatest" %% "scalatest-funsuite" % "3.2.16" % "test", 
-  "org.scalatest" %% "scalatest-funspec" % "3.2.16" % "test", 
-  "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.16" % "test"
+  "org.scalatest" %% "scalatest-core" % "3.2.17", 
+  "org.scalatest" %% "scalatest-flatspec" % "3.2.17" % "test", 
+  "org.scalatest" %% "scalatest-funsuite" % "3.2.17" % "test", 
+  "org.scalatest" %% "scalatest-funspec" % "3.2.17" % "test", 
+  "org.scalatest" %% "scalatest-shouldmatchers" % "3.2.17" % "test"
 )
 
 enablePlugins(SbtOsgi)
